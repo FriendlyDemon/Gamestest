@@ -1,7 +1,11 @@
+d = require(`../actions/attack.js`);
+attack = d(20)
+
 const
-name = "Firebolt",
-slot = 0,
-range = 120,
-spellType = attack,
-damage = 1*d10,
-damageType = fire
+    sName = "Firebolt",
+    slot = 0,
+    range = 120,
+    spellType = ["attack",attack],
+    damage = d(10);
+//damageType= fire
+module.exports = { sName, slot, range, spellType, damage }
