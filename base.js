@@ -24,8 +24,7 @@ magicMissile = {
 function castList() {
     spellSlots = ["cantrip", "1st level", "2nd level", "3rd level", "4th level", "5th level", "6th level", "7th level", "8th level", "9th level"]
     slot = rl.keyInSelect(spellSlots.slice(0, this.spells.length), "Wich slot would you like to cast?"),
-        castSpell = rl.keyInSelect(this.spells[slot].map(nome), "Wich spell would you like to cast?")
-    console.log("I cast "+this.spells[slot][castSpell]["sName"]+"!")
+        castSpell = rl.keyInSelect(this.spells[slot], "Wich spell would you like to cast?")
+    console.log("I cast "+this.spells[slot][castSpell]+"!")
 }
 castList.call(imp)
-
