@@ -1,4 +1,4 @@
-function armor(x){
-    return Math.pow(0.99,x)
+function armor(x,y){
+    return Math.floor(Math.pow(0.99,x)*y)
 }
-console.log(armor(50))
+console.log(armor(185,1000))
