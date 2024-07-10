@@ -1,6 +1,6 @@
 const rl = require('readline-sync')
 const fs = require('node:fs');
-function jsonfy(pasta,arquivo,quantidade) {
+function _Ref(pasta,arquivo,quantidade) {
     doc=require('./'+pasta+"/"+arquivo+".js").body
     for (i=0;i<=quantidade;i++){
     fs.writeFileSync('./_Ref/'+pasta+"/"+arquivo+i+'.json', JSON.stringify(doc), err=>{})}}
