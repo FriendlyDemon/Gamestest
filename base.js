@@ -1,4 +1,10 @@
 const rl = require('readline-sync')
+const fs = require('node:fs');
+function jsonfy(pasta,arquivo,quantidade) {
+    doc=require('./'+pasta+"/"+arquivo+".js").body
+    for (i=0;i<=quantidade;i++){
+    fs.writeFileSync('./_Ref/'+pasta+"/"+arquivo+i+'.json', JSON.stringify(doc), err=>{})}}
+
 function impCh(V1) {
     let { body } = require(`./characters/${V1}.js`)
     return body
