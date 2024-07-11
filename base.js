@@ -5,16 +5,16 @@ function _Ref(pasta,arquivo,quantidade) {
     for (i=0;i<=quantidade;i++){
     fs.writeFileSync('./_Ref/'+pasta+"/"+arquivo+i+'.json', JSON.stringify(doc), err=>{})}}
 
-function impCh(V1) {
-    let { body } = require(`./characters/${V1}.js`)
+function impCh(character) {
+    let { body } = require(`./characters/${character}.js`)
     return body
 }
-function impSp(V1) {
-    let { body } = require(`./spells/${V1}.js`)
+function impSp(spell) {
+    let { body } = require(`./spells/${spell}.js`)
     return body
 }
 let d = num => Math.floor(Math.random() * num) + 1
-let sN = V1 => impSp(V1).name
+let sN = sName => impSp(sName).name
 attack = (d(20))
 
 function castList(caster) {
