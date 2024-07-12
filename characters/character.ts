@@ -1,15 +1,46 @@
-export class Character {
-  name:string race:string
-  classe:string charStatus: (strength:number,dexterity:number,constitution: number,inteligence: number,wisdom: number,charisma: number,)
-
-  level: 2
-  classes: 1,
-  xp: 100,
-
-  healthMax: 12,
-  gold: 20,
-  equipment: ["staff", "robe"],
-  inventory: ["gum", "rope", "slingshot"],
-
-  spells: [(slot0 = []), (slot1 = []),(slot2= []),(slot3= []),(slot4= []),(slot5= []),(slot6= []),(slot7= []),(slot8= []),(slot9= [])],
-};
+export class character {
+  name: string;
+  creatureType:string
+  race: string;
+  classe?: string;
+  charStatus: [
+    strength: number,
+    dexterity: number,
+    constitution: number,
+    inteligence: number,
+    wisdom: number,
+    charisma: number
+  ];
+  level: number;
+  healthMax: number;
+  gold: number;
+  equipment: object;
+  inventory: object;
+  spells?: [
+    slot0?: object,
+    slot1?: object,
+    slot2?: object,
+    slot3?: object,
+    slot4?: object,
+    slot5?: object,
+    slot6?: object,
+    slot7?: object,
+    slot8?: object,
+    slot9?: object
+  ];
+  constructor(name:string,creatureType:string,race:string,str:number,dex:number,con:number,int:number,wis:number,cha:number,level:number,healthMax:number,gold:number,
+    equip:object|string,inventory:object|string,spells:object|string
+    ,classe?:string,){
+    this.name=name
+    this.creatureType=creatureType
+    this.race=race
+    this.classe=classe
+    this.charStatus=[str,dex,con,int,wis,cha]
+    this.level=level
+    this.healthMax=healthMax
+    this.gold=gold
+    this.equipment=[equip]
+    this.inventory=[inventory]
+    this.spells.slot0[spells]
+  }
+}
