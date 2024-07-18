@@ -16,20 +16,9 @@ export class character {
   gold: number;
   equipment: object;
   inventory: object;
-  spells?: [
-    slot0?: object,
-    slot1?: object,
-    slot2?: object,
-    slot3?: object,
-    slot4?: object,
-    slot5?: object,
-    slot6?: object,
-    slot7?: object,
-    slot8?: object,
-    slot9?: object
-  ];
+  spells?: {};
   constructor(name:string,creatureType:string,race:string,str:number,dex:number,con:number,int:number,wis:number,cha:number,level:number,healthMax:number,gold:number,
-    equip:object|string,inventory:object|string,spells:object|string
+    equip:object|string,inventory:object|string,spells?:object
     ,classe?:string,){
     this.name=name
     this.creatureType=creatureType
@@ -41,6 +30,6 @@ export class character {
     this.gold=gold
     this.equipment=[equip]
     this.inventory=[inventory]
-    this.spells.slot0[spells]
+    this.spells=spells
   }
 }

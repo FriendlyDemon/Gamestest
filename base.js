@@ -18,10 +18,11 @@ let sN = sName => impSp(sName).name
 attack = (d(20))
 
 function castList(caster) {
-    spellSlots = ["cantrip", "1st level", "2nd level", "3rd level", "4th level", "5th level", "6th level", "7th level", "8th level", "9th level"]
-    slot = rl.keyInSelect(spellSlots.slice(0, impCh(caster).spells.length), "Wich slot would you like to cast?"),
+    slot = rl.keyInSelect(Object.keys(impCh(caster).spells), "Wich slot would you like to cast?"),
         castSpell = rl.keyInSelect(impCh(caster).spells[slot].map(sN), "Wich spell would you like to cast?")
     console.log("I cast " + impSp(impCh(caster).spells[slot][castSpell]).name + "!")
 }
 
 castList("player")
+
+//console.log(Object.keys(impCh(caster).spells))

@@ -21,6 +21,6 @@ const body = {
     equipment: ['staff', 'robe'],
     inventory: ['gum', 'rope', 'slingshot'],
 
-    spells: [slot0 = ['firebolt', 'tollTheDead'], slot1 = ['magicMissile']]
+    spells: {"cantrip" : ['firebolt', 'tollTheDead'], "1st level" : ['magicMissile']}
 }
 module.exports = { body }
