@@ -1,4 +1,4 @@
 const body = {
-    name:"bork"
+    name:"Bork"
 }
 module.exports = { body }
