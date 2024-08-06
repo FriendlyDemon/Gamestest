@@ -15,6 +15,8 @@ var character = /** @class */ (function () {
         this.inventory = [inventory];
         this.spells = spells;
     }
+    ;
     return character;
 }());
 exports.character = character;
+;
