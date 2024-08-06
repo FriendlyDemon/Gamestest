@@ -18,8 +18,7 @@ export class character {
   inventory: object;
   spells?: {};
   constructor(name:string,creatureType:string,race:string,str:number,dex:number,con:number,int:number,wis:number,cha:number,level:number,healthMax:number,gold:number,
-    equip:object|string,inventory:object|string,spells?:object
-    ,classe?:string,){
+    equip:object|string,inventory:object|string,spells?:object,classe?:string,){
     this.name=name
     this.creatureType=creatureType
     this.race=race
