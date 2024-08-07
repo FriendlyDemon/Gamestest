@@ -18,9 +18,9 @@ let sN = sName => impSp(sName).name
 attack = (d(20))
 
 function castList(caster) {
-    slot = rl.keyInSelect(Object.keys(impCh(caster).spells), "Wich slot would you like to cast?"),
-        castSpell = rl.keyInSelect(impCh(caster).spells[slot].map(sN), "Wich spell would you like to cast?")
-    console.log("I cast " + impSp(impCh(caster).spells[slot][castSpell]).name + "!")
+    slot = impCh(caster).spells[rl.keyInSelect(Object.keys(impCh(caster).spells), "Wich slot would you like to cast?")],
+        castSpell = slot[rl.keyInSelect(slot.map(sN), "Wich spell would you like to cast?")]
+    console.log("I cast " + impSp(castSpell).name + "!")
 }
 
 castList("player")
