@@ -2,8 +2,12 @@ const path = require('path');
 const fs = require('fs');
 const rl = require('readline-sync');
 
+function _class(folder,...inn){
+let doc = require('./classes/'+folder+'.js')
+return new doc (...inn);
+}
 function _Ref(pasta, arquivo, quantidade) {
-    let test = fs.readdirSync(pasta).includes(arquivo + '1.json')
+    let test = fs.readdirSync('_Ref/' + pasta).includes(arquivo + '1.json')
     if (!test) {
         doc = require('./' + pasta + "/" + arquivo + ".js").body
         for (i = 1; i <= quantidade; i++) {
@@ -13,14 +17,13 @@ function _Ref(pasta, arquivo, quantidade) {
         console.log('arquivo já existe')
     }
 }
-
+let cavalo = _class('npc','cavalo',50,2,0,0,0,1,{'glue':0.2})
 function impCh(character) {
     let { body } = require(`./characters/${character}.js`)
     return body
 }
-x=false
-/* while (x===false){
-eval(rl.question(":"))}
-*/
-_Ref('test','test',1)
+x = false
+console.log('health = '+cavalo.health)
+//while (x===false){
+//eval(rl.question(": "))}
 //console.log(Object.keys(impCh(caster).spells))
