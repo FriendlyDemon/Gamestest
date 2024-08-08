@@ -23,7 +23,7 @@ function impCh(character) {
     return body
 }
 x = false
-console.log('health = '+cavalo.health)
+console.log(Object.keys(require('./classes/npc.js')))
 //while (x===false){
 //eval(rl.question(": "))}
 //console.log(Object.keys(impCh(caster).spells))
