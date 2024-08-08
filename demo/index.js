@@ -7,14 +7,16 @@ let doc = require('./classes/'+folder+'.js')
 return new doc (...inn);
 }
 function _Ref(pasta, arquivo, quantidade) {
-    let test = fs.readdirSync('_Ref/' + pasta).includes(arquivo + '1.json')
-    if (!test) {
-        doc = require('./' + pasta + "/" + arquivo + ".js").body
-        for (i = 1; i <= quantidade; i++) {
-            fs.writeFileSync('./_Ref/' + pasta + "/" + arquivo + i + '.json', JSON.stringify(doc), err => { })
+    if (fs.readdirSync('_Ref').includes(pasta)){
+        let test = fs.readdirSync('_Ref/' + pasta).includes(arquivo + '1.json')
+        if (!test) {
+            doc = require('./' + pasta + "/" + arquivo + ".js").body
+            for (i = 1; i <= quantidade; i++) {
+                fs.writeFileSync('./_Ref/' + pasta + "/" + arquivo + i + '.json', JSON.stringify(doc), err => { })
+            }
+        } else {
+            console.log('arquivo já existe')
         }
-    } else {
-        console.log('arquivo já existe')
     }
 }
 let cavalo = _class('npc','cavalo',50,2,0,0,0,1,{'glue':0.2})
