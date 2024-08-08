@@ -18,8 +18,9 @@ function impCh(character) {
     let { body } = require(`./characters/${character}.js`)
     return body
 }
-
-while (x=false){
+x=false
+/* while (x===false){
 eval(rl.question(":"))}
-
+*/
+_Ref('test','test',1)
 //console.log(Object.keys(impCh(caster).spells))
