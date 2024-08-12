@@ -1,0 +1,16 @@
+{
+    "name": "slime",
+    "health": 4,
+    "damage": 1,
+    "range": 1,
+    "armor": 0,
+    "dodge": 0,
+    "acc": 0,
+    "speed": 0,
+    "move": 0,
+    "cr": 1,
+    "loot": {
+        "slime goo": 0.4,
+        "slime core": 0.1
+    }
+}

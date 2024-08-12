@@ -1,0 +1,16 @@
+{
+    "name": "skeleton",
+    "health": 3,
+    "damage": 1,
+    "range": 0,
+    "armor": 1,
+    "dodge": 0,
+    "acc": 0,
+    "speed": 0,
+    "move": 0,
+    "cr": 1,
+    "loot": {
+        "bone": 0.3,
+        "skull": 0.1
+    }
+}
