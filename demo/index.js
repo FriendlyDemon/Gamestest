@@ -57,4 +57,3 @@ for (x = 0; x < 1;) {
 };
 
 // console.log(Object.keys(impnpc('skeleton').loot))
-
