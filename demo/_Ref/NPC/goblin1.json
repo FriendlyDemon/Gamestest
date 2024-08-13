@@ -1,0 +1,17 @@
+{
+    "name": "goblin",
+    "health": 5,
+    "damage": 1,
+    "range": 0,
+    "armor": 0,
+    "dodge": 2,
+    "acc": 0,
+    "speed": 1,
+    "move": 1,
+    "cr": 1,
+    "loot": {
+        "gold x3": 0.5,
+        "gold x5": 0.3,
+        "gold x10": 0.1
+    }
+}

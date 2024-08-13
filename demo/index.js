@@ -2,8 +2,10 @@ const path = require('path');
 const fs = require('fs');
 const rl = require('readline-sync');
 
-function impnpc(character) {
-    return require(`./_Ref/NPC/${character}.json`)
+function imp(pasta,ref) {
+    if (fs.readdirSync(`./_Ref/${pasta}`).includes(`${ref}.json`)){
+        return require(`./_Ref/${pasta}/${ref}.json`)
+    } else {return `${ref}.json não existe`}
 };
 
 function attack(a1, d1) {
@@ -35,9 +37,19 @@ function _Ref(pasta, arquivo, quantidade) {
         for (i = 1; i <= quantidade; i++) {
             fs.writeFileSync('./_Ref/' + pasta + '/' + arquivo + i + '.json', JSON.stringify(doc, null, '    '))
         }
-        return 'referências criadas com exito'
+        return 'referências criadas com êxito'
     };
 };
+function _loot(inv){
+    let _bag=[],
+    loot1={...inv.loot},
+    loot2=[...Object.keys(loot1)];
+    for(i=0;i<loot2.length;i++){
+        if(Math.random()<=loot1[loot2[i]])
+            {_bag.push(loot2[i])}
+    }
+    return _bag
+}
 
 for (x = 0; x < 1;) {
     eval(sas = rl.question(': '))
