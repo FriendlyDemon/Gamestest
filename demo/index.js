@@ -2,21 +2,21 @@ const path = require('path');
 const fs = require('fs');
 const rl = require('readline-sync');
 
-function imp(pasta,ref) {
-    if (fs.readdirSync(`./_Ref/${pasta}`).includes(`${ref}.json`)){
+function imp(pasta, ref) {
+    if (fs.readdirSync(`./_Ref/${pasta}`).includes(`${ref}.json`)) {
         return require(`./_Ref/${pasta}/${ref}.json`)
-    } else {return `${ref}.json não existe`}
+    } else { return `${ref}.json não existe` }
 };
 
 function attack(a1, d1) {
-    if(d1['health']==0){return `${d1['name']} já está morto`}
+    if (d1['health'] == 0) { return `${d1['name']} já está morto` }
     if (a1['damage'] > d1['armor'] && d1['health'] > (a1['damage'] - d1['armor'])) {
         d1['health'] -= (a1['damage'] - d1['armor'])
         return (d1['armor'] - a1['damage'])
     } else if (d1['armor'] >= a1['damage']) {
         return 'bloqueou'
-    } else if ((a1['damage'] - d1['armor'])>=d1['health']){
-        d2=d1['health']
+    } else if ((a1['damage'] - d1['armor']) >= d1['health']) {
+        d2 = d1['health']
         d1['health'] = 0
         return `-${d2} ${d1['name']} morreu`
     }
@@ -41,13 +41,12 @@ function _Ref(pasta, arquivo, quantidade) {
     };
 };
 
-function _loot(inv){
-    let _bag=[],
-    loot1={...inv.loot},
-    loot2=[...Object.keys(loot1)];
-    for(i=0;i<loot2.length;i++){
-        if(Math.random()<=loot1[loot2[i]])
-            {_bag.push(loot2[i])}
+function _loot(inv) {
+    let _bag = [],
+        loot1 = { ...inv.loot },
+        loot2 = [...Object.keys(loot1)];
+    for (i = 0; i < loot2.length; i++) {
+        if (Math.random() <= loot1[loot2[i]]) { _bag.push(loot2[i]) }
     }
     return _bag
 };
