@@ -40,6 +40,7 @@ function _Ref(pasta, arquivo, quantidade) {
         return 'referências criadas com êxito'
     };
 };
+
 function _loot(inv){
     let _bag=[],
     loot1={...inv.loot},
@@ -49,7 +50,7 @@ function _loot(inv){
             {_bag.push(loot2[i])}
     }
     return _bag
-}
+};
 
 for (x = 0; x < 1;) {
     eval(sas = rl.question(': '))
