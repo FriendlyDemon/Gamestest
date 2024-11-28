@@ -1,24 +1,25 @@
 const rl = require("readline-sync");
 const fs = require("node:fs");
 
-function _Ref(pasta, arquivo, quantidade) {
-
-  if (!fs.readdirSync(__dirname).includes(pasta)) {
+function _Ref(folder, arquive, name, quantity) {
+  if (!fs.readdirSync(__dirname).includes(folder)) {
     return "404 folder does not exist";
-  } else if (!fs.readdirSync("./_Ref").includes(pasta)) {
-    fs.mkdir("./_Ref/" + pasta);
+  } else if (!fs.readdirSync("./_Ref").includes(folder)) {
+    fs.mkdir("./_Ref/" + folder);
   }
 
-  if (fs.readdirSync("./_Ref/" + pasta).includes(arquivo + "1.json")) {
+  if (fs.readdirSync("./_Ref/" + folder).includes(arquive + "1.json")) {
     return "500 reference already exists";
-  } else if (!fs.readdirSync(pasta).includes(arquivo + ".js")) {
+  } else if (!fs.readdirSync(folder).includes(arquive + ".js")) {
     return "404 file does not exist";
   } else {
-    doc = require(`./${pasta}/${arquivo}.js`);
+    doc = require(`./${folder}/${arquive}.js`);
 
-    for (i = 1; i <= quantidade; i++) {
+    doc.name = name;
+
+    for (i = 1; i <= quantity; i++) {
       fs.writeFileSync(
-        "./_Ref/" + pasta + "/" + fs.readdirSync("./_Ref/" + pasta).length + ".json",
+        "./_Ref/" + folder + "/" + fs.readdirSync("./_Ref/" + folder).length + ".json",
         JSON.stringify(doc, null, "    ")
       );
     }
@@ -77,6 +78,7 @@ function pickSlot(type, character) {
 function d(num) {
   return Math.floor(Math.random() * num) + 1;
 }
+
 function sN(sName) {
   return imp("spells", sName).name;
 }
@@ -124,5 +126,4 @@ function damage(weapon) {
   }
 }
 
-//castList("player");
-console.log(_Ref('items', 'longsword', 1))
+console.log(_Ref('items', 'longsword', 'Cool Stick', 1))
