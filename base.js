@@ -9,10 +9,10 @@ function _Ref(pasta, arquivo, quantidade) {
   }
   if (fs.readdirSync("./_Ref/" + pasta).includes(arquivo + "1.json")) {
     return "500 reference already exists";
-  } else if (!fs.readdirSync(pasta).includes(arquivo + ".json")) {
+  } else if (!fs.readdirSync(pasta).includes(arquivo + ".js")) {
     return "404 file does not exist";
   } else {
-    doc = require(`./${pasta}/${arquivo}.json`);
+    doc = require(`./${pasta}/${arquivo}.js`);
     for (i = 1; i <= quantidade; i++) {
       fs.writeFileSync(
         "./_Ref/" + pasta + "/" + arquivo + i + ".json",
@@ -38,7 +38,7 @@ function impRef(folder, file) {
 function imp(folder, file) {
   if (fs.readdirSync(__dirname).includes(`${folder}`)) {
     if (fs.readdirSync(`./${folder}`).includes(`${file}.js`)) {
-      return require(`./${folder}/${file}.js`).body;
+      return require(`./${folder}/${file}.js`);
     } else {
       return `${file}.json already exists`;
     }
@@ -54,10 +54,10 @@ function pickSlot(type, character) {
   ) {
     let slot = imp("characters", character)[type][
       Object.keys(imp("characters", character)[type])[
-        rl.keyInSelect(
-          Object.keys(imp("characters", character)[type]),
-          "Wich slot would you like to use?"
-        )
+      rl.keyInSelect(
+        Object.keys(imp("characters", character)[type]),
+        "Wich slot would you like to use?"
+      )
       ]
     ];
     return slot;
@@ -82,4 +82,39 @@ function castList(caster) {
   console.log("I cast " + imp("spells", castSpell).name + "!");
 }
 
-castList("player");
+function damage(weapon) {
+  let ref = impRef('items', weapon)
+  if (typeof ref == 'string') {
+    return ref
+  } else {
+    let v = 1
+    if (ref.tags.includes('versatile')) {
+      v = 2
+    };
+
+    let x = 0
+
+    for (let i = 0; i < ref.damage[0][0]; i++) {
+      x += d(ref.damage[0][v])
+    }
+
+    final = `${x} ${ref.damage[0].at(-1)} damage`
+    x = 0
+    if (ref.damage.length > 1) {
+      for (let i = 1, y = 1; y < ref.damage.length;) {
+        x += d(ref.damage[y][1])
+        if (ref.damage[y][0] > i) {
+          i++
+        } else {
+          final += `, ${x} ${ref.damage[y].at(-1)} damage`
+          y++, i = 1, x = 0
+        }
+      }
+    }
+    return final
+  }
+}
+
+//castList("player");
+//console.log(_Ref('items','longsword',1))
+console.log(damage('longsword1'))

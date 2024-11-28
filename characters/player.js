@@ -1,4 +1,4 @@
-const body = {
+module.exports = {
     name: "Gandalf",
     race: 'human',
 
@@ -23,4 +23,3 @@ const body = {
 
     spells: {"cantrip" : ['firebolt', 'tollTheDead'], "1st level" : ['magicMissile']}
 }
-module.exports = { body }

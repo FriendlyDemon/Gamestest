@@ -1,4 +1,3 @@
-const body = {
+module.exports = {
     name:"Bork"
 }
-module.exports = { body }

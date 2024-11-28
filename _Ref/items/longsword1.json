@@ -1,0 +1,10 @@
+{
+  "name": "Longsword",
+  "type": "equipment",
+  "tags": ["one handed", "martial", "melee", "versatile"],
+  "cost": 1500,
+  "damage": [
+    [1, 8, 10, "slashing"],
+    [1, 4, "necrotic"]
+  ]
+}
