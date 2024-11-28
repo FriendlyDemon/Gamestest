@@ -5,7 +5,7 @@ function _Ref(folder, arquive, name, quantity) {
   if (!fs.readdirSync(__dirname).includes(folder)) {
     return "404 folder does not exist";
   } else if (!fs.readdirSync("./_Ref").includes(folder)) {
-    fs.mkdir("./_Ref/" + folder);
+    fs.mkdirSync("./_Ref/" + folder);
   }
 
   if (fs.readdirSync("./_Ref/" + folder).includes(arquive + "1.json")) {
@@ -126,4 +126,4 @@ function damage(weapon) {
   }
 }
 
-console.log(_Ref('items', 'longsword', 'Cool Stick', 1))
+console.log(_Ref('characters', 'player', 'Luke', 1))
