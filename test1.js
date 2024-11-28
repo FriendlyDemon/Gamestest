@@ -12,3 +12,8 @@ function jsonfy(pasta,arquivo,quantidade) {
 
 // https://nodejs.org/en/learn/manipulating-files/writing-files-with-nodejs
 jsonfy("characters","player",3)
+
+for (x = 0; x < 1;) {
+    eval(sas = rl.question(': '))
+    if (sas == 0) { x++ }
+};
