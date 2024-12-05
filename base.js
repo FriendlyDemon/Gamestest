@@ -1,6 +1,10 @@
 const rl = require("readline-sync");
 const fs = require("node:fs");
 
+if (!fs.readdirSync(__dirname).includes("_Ref")) {
+  fs.mkdirSync("_Ref/");
+}
+
 function _Ref(folder, arquive, name, quantity) {
   if (!fs.readdirSync(__dirname).includes(folder)) {
     return "404 folder does not exist";
@@ -8,22 +12,26 @@ function _Ref(folder, arquive, name, quantity) {
     fs.mkdirSync("./_Ref/" + folder);
   }
 
-  if (fs.readdirSync("./_Ref/" + folder).includes(arquive + "1.json")) {
-    return "500 reference already exists";
-  } else if (!fs.readdirSync(folder).includes(arquive + ".js")) {
+  let refname = fs.readdirSync("./_Ref/" + folder).length;
+
+  if (!fs.readdirSync(folder).includes(arquive + ".js")) {
     return "404 file does not exist";
   } else {
     doc = require(`./${folder}/${arquive}.js`);
 
     doc.name = name;
 
-    for (i = 1; i <= quantity; i++) {
+    for (i = 1; i <= quantity || i == 1; i++) {
       fs.writeFileSync(
-        "./_Ref/" + folder + "/" + fs.readdirSync("./_Ref/" + folder).length + ".json",
+        "./_Ref/" + folder + "/" + fs.readdirSync("./_Ref/" + folder).length.toString(16) + ".json",
         JSON.stringify(doc, null, "    ")
       );
     }
-    return "reference(s) successfully created ";
+    if (quantity > 1) {
+      return `references successfully created as ${refname.toString(16)} to ${(refname + quantity).toString(16)}`;
+    } else {
+      return `reference successfully created as ${refname.toString(16)}`
+    }
   }
 }
 
@@ -125,5 +133,3 @@ function damage(weapon) {
     return final
   }
 }
-
-console.log(_Ref('characters', 'player', 'Luke', 1))
