@@ -1,5 +1,6 @@
 module.exports = {
     name: "Gandalf",
+    creaturetype:'humanoid',
     race: 'human',
 
     charStatus: {
@@ -18,8 +19,8 @@ module.exports = {
 
     healthMax: 12,
     gold: 20,
-    equipment: ['staff', 'robe'],
-    inventory: ['gum', 'rope', 'slingshot'],
+    equipment: {mainhand:'staff',offhand:'mainhand', torso:'robe'},
+    inventory: {misc:['gum', 'rope'], equipment:['slingshot']},
 
     spells: {"cantrip" : ['firebolt', 'tollTheDead'], "1st level" : ['magicMissile']}
 }
