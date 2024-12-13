@@ -49,7 +49,7 @@ function impRef(folder, file) {
   }
 }
 
-function imp(folder, file) {
+function impBase(folder, file) {
   if (fs.readdirSync(__dirname).includes(`${folder}`)) {
     if (fs.readdirSync(`./${folder}`).includes(`${file}.js`)) {
       return require(`./${folder}/${file}.js`);
@@ -67,10 +67,10 @@ function pickSlot(type, character) {
     ["equipment", "invetory", "spells"].includes(type) &&
     fs.readdirSync("./characters").includes(`${file}.js`)
   ) {
-    let slot = imp("characters", character)[type][
-      Object.keys(imp("characters", character)[type])[
+    let slot = impRef("characters", character)[type][
+      Object.keys(impRef("characters", character)[type])[
       rl.keyInSelect(
-        Object.keys(imp("characters", character)[type]),
+        Object.keys(impRef("characters", character)[type]),
         "Wich slot would you like to use?"
       )
       ]
@@ -96,7 +96,7 @@ function castList(caster) {
   let castSpell = pickSlot(spells, caster)[
     rl.keyInSelect(slot.map(sN), "Wich spell would you like to cast?")
   ];
-  console.log("I cast " + imp("spells", castSpell).name + "!");
+  console.log("I cast " + impRef("spells", castSpell).name + "!");
 }
 // rewrite return to ( x(y) type damage)
 function damage(weapon) {
