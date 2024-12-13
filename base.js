@@ -22,14 +22,14 @@ function _Ref(folder, document, name, quantity) {
     doc.name = name;
 
     for (i = 1; i <= quantity || i == 1; i++) {
-      let filename=('000000'+fs.readdirSync("./_Ref/" + folder).length.toString(16)).slice(-6)
+      let filename = ('000000' + fs.readdirSync("./_Ref/" + folder).length.toString(16)).slice(-6)
 
       fs.writeFileSync("./_Ref/" + folder + "/" + filename + ".json",
         JSON.stringify(doc, null, "    ")
       );
     }
     if (quantity > 1) {
-      return `references successfully created as ${('000000'+refname.toString(16)).slice(-6)} to ${('000000'+(refname + quantity).toString(16)).slice(-6)}`;
+      return `references successfully created as ${('000000' + refname.toString(16)).slice(-6)} to ${('000000' + (refname + quantity).toString(16)).slice(-6)}`;
     } else {
       return `reference successfully created as ${refname.toString(16)}`
     }
@@ -54,7 +54,7 @@ function impBase(folder, file) {
     if (fs.readdirSync(`./${folder}`).includes(`${file}.js`)) {
       return require(`./${folder}/${file}.js`);
     } else {
-      return `${file}.json already exists`;
+      return `${file}.js does not exists`;
     }
 
   } else {
@@ -62,23 +62,17 @@ function impBase(folder, file) {
   }
 }
 
-function pickSlot(type, character) {
-  if (
-    ["equipment", "invetory", "spells"].includes(type) &&
-    fs.readdirSync("./characters").includes(`${file}.js`)
+function pickSlot(character) {
+  if (fs.readdirSync("./characters").includes(`${file}.js`)
   ) {
-    let slot = impRef("characters", character)[type][
-      Object.keys(impRef("characters", character)[type])[
+    let slot = impRef("characters", character).spells[
       rl.keyInSelect(
-        Object.keys(impRef("characters", character)[type]),
+        Object.keys(impRef("characters", character).spells),
         "Wich slot would you like to use?"
       )
-      ]
     ];
 
     return slot;
-  } else if (["equipment", "invetory", "spells"].includes(type)) {
-    return `404 type ${type} does not exist`;
   } else if (fs.readdirSync("./characters").includes(`${file}.js`)) {
     return `404 character ${character} does not exist`;
   }
@@ -93,7 +87,7 @@ function sN(sName) {
 }
 
 function castList(caster) {
-  let castSpell = pickSlot(spells, caster)[
+  let castSpell = pickSlot(caster)[
     rl.keyInSelect(slot.map(sN), "Wich spell would you like to cast?")
   ];
   console.log("I cast " + impRef("spells", castSpell).name + "!");
