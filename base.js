@@ -22,13 +22,14 @@ function _Ref(folder, arquive, name, quantity) {
     doc.name = name;
 
     for (i = 1; i <= quantity || i == 1; i++) {
-      fs.writeFileSync(
-        "./_Ref/" + folder + "/" + fs.readdirSync("./_Ref/" + folder).length.toString(16) + ".json",
+      let filename=('000000'+fs.readdirSync("./_Ref/" + folder).length.toString(16)).slice(-6)
+
+      fs.writeFileSync("./_Ref/" + folder + "/" + filename + ".json",
         JSON.stringify(doc, null, "    ")
       );
     }
     if (quantity > 1) {
-      return `references successfully created as ${refname.toString(16)} to ${(refname + quantity).toString(16)}`;
+      return `references successfully created as ${('000000'+refname.toString(16)).slice(-6)} to ${('000000'+(refname + quantity).toString(16)).slice(-6)}`;
     } else {
       return `reference successfully created as ${refname.toString(16)}`
     }
