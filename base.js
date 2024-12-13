@@ -5,7 +5,7 @@ if (!fs.readdirSync(__dirname).includes("_Ref")) {
   fs.mkdirSync("_Ref/");
 }
 
-function _Ref(folder, arquive, name, quantity) {
+function _Ref(folder, document, name, quantity) {
   if (!fs.readdirSync(__dirname).includes(folder)) {
     return "404 folder does not exist";
   } else if (!fs.readdirSync("./_Ref").includes(folder)) {
@@ -14,10 +14,10 @@ function _Ref(folder, arquive, name, quantity) {
 
   let refname = fs.readdirSync("./_Ref/" + folder).length;
 
-  if (!fs.readdirSync(folder).includes(arquive + ".js")) {
+  if (!fs.readdirSync(folder).includes(document + ".js")) {
     return "404 file does not exist";
   } else {
-    doc = require(`./${folder}/${arquive}.js`);
+    doc = require(`./${folder}/${document}.js`);
 
     doc.name = name;
 
