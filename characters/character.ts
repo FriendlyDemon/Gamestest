@@ -54,6 +54,7 @@ class Equip {
   back: string = "empty";
   torso: string = "empty";
   waist: string = "empty";
+  legs: string = "empty";
   feet: string = "empty";
   hands: string = "empty";
   fingers: Array<string> = ["empty"];
