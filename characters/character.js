@@ -24,6 +24,7 @@ var Equip = /** @class */ (function () {
         this.back = "empty";
         this.torso = "empty";
         this.waist = "empty";
+        this.legs = "empty";
         this.feet = "empty";
         this.hands = "empty";
         this.fingers = ["empty"];
