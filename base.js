@@ -19,7 +19,8 @@ function _Ref(folder, document, name, quantity) {
   } else {
     doc = require(`./${folder}/${document}.js`);
 
-    doc.name = name;
+    if (typeof name == 'string') { doc.name = name; }
+
 
     for (i = 1; i <= quantity || i == 1; i++) {
       let filename = ('000000' + fs.readdirSync("./_Ref/" + folder).length.toString(16)).slice(-6)
@@ -62,19 +63,26 @@ function impBase(folder, file) {
   }
 }
 
-function pickSlot(character) {
-  if (fs.readdirSync("./characters").includes(`${file}.js`)
-  ) {
-    let slot = impRef("characters", character).spells[
-      rl.keyInSelect(
-        Object.keys(impRef("characters", character).spells),
-        "Wich slot would you like to use?"
-      )
-    ];
+function showSlots(caster) {
+  let foo = []
+  for (let slot in caster.spells) {
+    if (caster.spells[slot].length > 0) {
+      foo.push(slot)
+    }
+  }
+  return foo
+}
 
-    return slot;
-  } else if (fs.readdirSync("./characters").includes(`${file}.js`)) {
-    return `404 character ${character} does not exist`;
+function pickSlot(character) {
+  let cha = impRef("characters", character)
+  if (typeof cha == 'object') {
+    let slot = showSlots(cha);
+
+    let pick = slot[rl.keyInSelect(slot, "Wich slot would you like to use?")];
+
+    return cha.spells[pick].map(sN);
+  } else {
+    return cha
   }
 }
 
@@ -82,15 +90,15 @@ function d(num) {
   return Math.floor(Math.random() * num) + 1;
 }
 
-function sN(sName) {
-  return imp("spells", sName).name;
+function sN(hex) {
+  return impRef("spells", hex).name;
 }
 
 function castList(caster) {
-  let castSpell = pickSlot(caster)[
-    rl.keyInSelect(slot.map(sN), "Wich spell would you like to cast?")
+  let castSpell = pickSlot(caster)
+  let spellName=castSpell[rl.keyInSelect(castSpell, "Wich spell would you like to cast?")
   ];
-  console.log("I cast " + impRef("spells", castSpell).name + "!");
+  console.log(impRef('characters',caster).name + " casts " + spellName + "!");
 }
 // rewrite return to ( x(y) type damage)
 function damage(weapon) {
@@ -128,3 +136,5 @@ function damage(weapon) {
     return final
   }
 }
+
+castList('000000')
