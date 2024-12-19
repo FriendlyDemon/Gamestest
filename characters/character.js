@@ -92,12 +92,3 @@ var SpellList = /** @class */ (function () {
     return SpellList;
 }());
 exports.SpellList = SpellList;
-
-let gandalfequip=new Equip(),gandalfinv=new Inventory(),gandalfspell=new SpellList(['firebolt'],['magic missile']);
-
-gandalfequip.mainhand='staff'
-gandalfinv.consumables.push('scroll of fireball')
-
-let personagem = new Character('Gandalf','humanoid','human',10,11,12,18,13,8,1,10,10,gandalfequip,gandalfinv,gandalfspell,'wizard')
-
-require('node:fs').writeFileSync('test.js',JSON.stringify(personagem, null, "    "))
