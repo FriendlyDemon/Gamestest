@@ -1,4 +1,4 @@
-import { DamageTypes, WeaponTags } from "../types.ts";
+import { DamageTypes, WeaponTags, Actions } from "../types.ts";
 abstract class Item {
   name: string;
   type: string;
@@ -62,4 +62,14 @@ class Material extends Item {
   type = "material";
 }
 
-export { Weapon, Armor, Material };
+class Usable extends Item {
+  type = "Usable";
+  consumed: boolean;
+  useTime: Actions;
+}
+
+class Ammunition extends Item {
+  type = "ammunition";
+}
+
+export { Weapon, Armor, Material, Usable, Ammunition };
