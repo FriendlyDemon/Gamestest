@@ -1,4 +1,4 @@
-export { DamageTypes, WeaponTags, SpellTags, Actions };
+export { DamageTypes, WeaponTags, ArmorType, SpellTags, Actions };
 
 type DamageTypes =
   | "slashing"
@@ -28,6 +28,8 @@ type WeaponTags =
   | "ranged"
   | "thrown";
 
+type ArmorType = "light" | "medium" | "heavy" | "shield";
+
 type SpellTags =
   | "buff"
   | "save"
@@ -38,6 +40,7 @@ type SpellTags =
   | "terrain"
   | "self"
   | "touch"
-  | "target";
+  | "target"
+  | "damage";
 
 type Actions = "action" | "bonus action" | "reaction" | "movement";

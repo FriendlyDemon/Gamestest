@@ -1,4 +1,4 @@
-import { DamageTypes, WeaponTags, Actions } from "../types.ts";
+import { DamageTypes, WeaponTags, ArmorType, Actions } from "../types.ts";
 
 abstract class Item {
   name: string;
@@ -40,14 +40,17 @@ class Weapon extends Equipment {
 
 class Armor extends Equipment {
   ac: number;
-  dexLimit: number;
+  dexLimit: number | undefined;
+  armorType: ArmorType;
+
   constructor(
     name: string,
     tags: Array<string>,
     cost: number,
     weight: number,
     ac: number,
-    dexLimit: number
+    armorType: ArmorType,
+    dexLimit?: number
   ) {
     super();
     this.name = name;
@@ -56,6 +59,7 @@ class Armor extends Equipment {
     this.weight = weight;
     this.ac = ac;
     this.dexLimit = dexLimit;
+    this.armorType = armorType;
   }
 }
 
