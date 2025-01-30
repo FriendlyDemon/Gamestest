@@ -1,4 +1,5 @@
 import { DamageTypes, WeaponTags, Actions } from "../types.ts";
+
 abstract class Item {
   name: string;
   type: string;
