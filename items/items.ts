@@ -1,4 +1,10 @@
-import { DamageTypes, WeaponTags, ArmorType, Actions } from "../types.ts";
+import {
+  DamageTypes,
+  WeaponTags,
+  ArmorType,
+  EquipSlot,
+  Actions,
+} from "../types.ts";
 
 abstract class Item {
   name: string;
@@ -9,8 +15,12 @@ abstract class Item {
   description: string;
 }
 
-abstract class Equipment extends Item {
+class Equipment extends Item {
   type = "equipment";
+  slot?: EquipSlot;
+  constructor(slot?: EquipSlot) {
+    this.slot = slot;
+  }
 }
 
 class Weapon extends Equipment {
@@ -26,9 +36,10 @@ class Weapon extends Equipment {
     damage: Array<
       [number, number, number, DamageTypes] | [number, number, DamageTypes]
     >,
-    desc: string
+    desc: string,
+    slot?:EquipSlot
   ) {
-    super();
+    super(slot?);
     this.name = name;
     this.tags = tags;
     this.cost = cost;
@@ -40,7 +51,7 @@ class Weapon extends Equipment {
 
 class Armor extends Equipment {
   ac: number;
-  dexLimit: number | undefined;
+  dexLimit?: number;
   armorType: ArmorType;
 
   constructor(
