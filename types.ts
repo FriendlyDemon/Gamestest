@@ -1,4 +1,13 @@
-export { DamageTypes, WeaponTags, ArmorType, EquipSlot, SpellTags, Actions };
+export {
+  DamageTypes,
+  WeaponTags,
+  ArmorType,
+  EquipSlot,
+  SpellTags,
+  Actions,
+  MagicSchool,
+  Range,
+};
 
 type DamageTypes =
   | "slashing"
@@ -16,6 +25,7 @@ type DamageTypes =
   | "force";
 
 type WeaponTags =
+  | DamageTypes
   | "ammunition"
   | "finesse"
   | "reach"
@@ -23,6 +33,7 @@ type WeaponTags =
   | "martial"
   | "simple"
   | "versatile"
+  | "one-handed"
   | "two-handed"
   | "melee"
   | "ranged"
@@ -43,6 +54,7 @@ type EquipSlot =
   | "feet";
 
 type SpellTags =
+  | DamageTypes
   | "buff"
   | "save"
   | "attack"
@@ -50,9 +62,19 @@ type SpellTags =
   | "creature"
   | "object"
   | "terrain"
-  | "self"
-  | "touch"
   | "target"
   | "damage";
 
 type Actions = "action" | "bonus action" | "reaction" | "movement";
+
+type MagicSchool =
+  | "abjuration"
+  | "conjuration"
+  | "divination"
+  | "enchantment"
+  | "evocation"
+  | "illusion"
+  | "necromancy"
+  | "transmutation";
+
+type Range = number | "self" | "touch";

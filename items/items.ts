@@ -6,6 +6,8 @@ import {
   Actions,
 } from "../types.ts";
 
+import { Spell } from "../spells/spells.ts";
+
 abstract class Item {
   name: string;
   type: string;
@@ -96,7 +98,7 @@ class Material extends Item {
   type = "material";
   constructor(
     name: string,
-    tags: Array<WeaponTags>,
+    tags: Array<string>,
     cost: number,
     weight: number,
     desc?: string
@@ -116,7 +118,7 @@ class Usable extends Item {
   useTime: Actions;
   constructor(
     name: string,
-    tags: Array<WeaponTags>,
+    tags: Array<string>,
     cost: number,
     weight: number,
     consumed: boolean,
@@ -134,12 +136,45 @@ class Usable extends Item {
   }
 }
 
+class Wand extends Usable {
+  spell: Spell;
+  charges: [number, number];
+  constructor(
+    name: string,
+    tags: Array<string>,
+    cost: number,
+    weight: number,
+    spell: Spell,
+    charges: [number, number],
+    desc?: string
+  ) {
+    super(name, tags, cost, weight, false, "action", desc);
+    this.spell = spell;
+    this.charges = charges;
+  }
+}
+
+class Scroll extends Usable {
+  spell: Spell;
+  constructor(
+    name: string,
+    tags: Array<string>,
+    cost: number,
+    weight: number,
+    spell: Spell,
+    desc?: string
+  ) {
+    super(name, tags, cost, weight, true, "action", desc);
+    this.spell = spell;
+  }
+}
+
 class Ammunition extends Item {
   type = "ammunition";
   ammount: number;
   constructor(
     name: string,
-    tags: Array<WeaponTags>,
+    tags: Array<string>,
     cost: number,
     weight: number,
     ammount: number,
@@ -155,4 +190,4 @@ class Ammunition extends Item {
   }
 }
 
-export { Weapon, Armor, Accessory, Material, Usable, Ammunition };
+export { Weapon, Armor, Accessory, Material, Usable, Wand, Scroll, Ammunition };

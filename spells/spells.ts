@@ -1,26 +1,35 @@
-import { SpellTags, DamageTypes } from "../types.ts";
+import { SpellTags, DamageTypes, MagicSchool, Range } from "../types.ts";
 
-class Spell {
+export class Spell {
   name: string;
   slot: number;
-  range: number;
-  area: number;
-  dice: Array<[number, number, DamageTypes, DamageTypes?]>;
-  tags: Array<SpellTags | DamageTypes>;
+  school: MagicSchool;
+  range: Range;
+  area?: number;
+  duration: number;
+  dice: Array<[number, number, DamageTypes, DamageTypes?]> | undefined;
+  tags: Array<SpellTags>;
   constructor(
     name: string,
     slot: number,
-    range: number,
+    school: MagicSchool,
+    range: Range,
     area: number,
-    dice: Array<[number, number, DamageTypes, DamageTypes?]>,
-    tags: Array<SpellTags | DamageTypes>
+    duration: number,
+    tags: Array<SpellTags>,
+    dice?: Array<[number, number, DamageTypes, DamageTypes?]>
   ) {
     this.name = name;
     this.slot = slot;
+    this.school = school;
     this.range = range;
-    this.area = area;
+    if (area > 0) {
+      this.area = area;
+    }
+    if (duration > 0) {
+      this.duration = duration;
+    }
     this.dice = dice;
     this.tags = tags;
   }
 }
-export { Spell };

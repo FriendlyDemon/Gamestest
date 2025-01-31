@@ -17,3 +17,10 @@ for (x = 0; x < 1;) {
     eval(sas = rl.question(': '))
     if (sas == 0) { x++ }
 };
+
+/*
+class a
+class b extends a
+obj = new class b
+obj instanceof a = true
+*/
