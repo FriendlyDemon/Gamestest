@@ -31,7 +31,7 @@ class Weapon extends Equipment {
     damage: Array<
       [number, number, number, DamageTypes] | [number, number, DamageTypes]
     >,
-    desc?: string,
+    desc?: string
   ) {
     super();
     this.name = name;
@@ -72,20 +72,70 @@ class Armor extends Equipment {
 
 class Accessory extends Equipment {
   slot: EquipSlot;
+  constructor(
+    name: string,
+    type: string,
+    tags: Array<string>,
+    cost: number,
+    weight: number,
+    slot: EquipSlot,
+    desc?: string
+  ) {
+    super();
+    this.name = name;
+    this.type = type;
+    this.tags = tags;
+    this.cost = cost;
+    this.weight = weight;
+    this.description = desc;
+    this.slot = slot;
+  }
 }
 
 class Material extends Item {
   type = "material";
+  constructor(
+    name: string,
+    tags: Array<WeaponTags>,
+    cost: number,
+    weight: number,
+    desc?: string
+  ) {
+    super();
+    this.name = name;
+    this.tags = tags;
+    this.cost = cost;
+    this.weight = weight;
+    this.description = desc;
+  }
 }
 
 class Usable extends Item {
   type = "Usable";
   consumed: boolean;
   useTime: Actions;
+  constructor(
+    name: string,
+    tags: Array<WeaponTags>,
+    cost: number,
+    weight: number,
+    consumed: boolean,
+    useTime: Actions,
+    desc?: string
+  ) {
+    super();
+    this.name = name;
+    this.tags = tags;
+    this.cost = cost;
+    this.weight = weight;
+    this.consumed = consumed;
+    this.useTime = useTime;
+    this.description = desc;
+  }
 }
 
 class Ammunition extends Item {
   type = "ammunition";
 }
 
-export { Weapon, Armor, Material, Usable, Ammunition };
+export { Weapon, Armor, Accessory, Material, Usable, Ammunition };
