@@ -13,7 +13,6 @@ abstract class Item {
   cost: number;
   weight: number;
   description: string | undefined;
-  description: string | undefined;
 }
 
 abstract class Equipment extends Item {
@@ -33,9 +32,6 @@ class Weapon extends Equipment {
       [number, number, number, DamageTypes] | [number, number, DamageTypes]
     >,
     desc?: string,
-    slot?: EquipSlot
-    desc?: string,
-    slot?: EquipSlot
   ) {
     super();
     this.name = name;
@@ -59,8 +55,6 @@ class Armor extends Equipment {
     weight: number,
     ac: number,
     armorType: ArmorType,
-    dexLimit?: number,
-    desc?: string
     dexLimit?: number,
     desc?: string
   ) {
