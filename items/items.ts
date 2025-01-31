@@ -12,19 +12,31 @@ abstract class Item {
   tags: Array<string>;
   cost: number;
   weight: number;
-  description: string;
+  description: string | undefined;
 }
 
 class Equipment extends Item {
   type = "equipment";
   slot?: EquipSlot;
-  constructor(slot?: EquipSlot) {
+  constructor(
+    name: string,
+    tags: Array<string>,
+    cost: number,
+    weight: number,
+    description?: string,
+    slot?: EquipSlot
+  ) {
+    super();
+    this.name = name;
+    this.tags = tags;
+    this.cost = cost;
+    this.weight = weight;
+    this.description = description;
     this.slot = slot;
   }
 }
 
 class Weapon extends Equipment {
-  tags: Array<WeaponTags>;
   damage: Array<
     [number, number, number, DamageTypes] | [number, number, DamageTypes]
   >;
@@ -36,15 +48,10 @@ class Weapon extends Equipment {
     damage: Array<
       [number, number, number, DamageTypes] | [number, number, DamageTypes]
     >,
-    desc: string,
-    slot?:EquipSlot
+    desc?: string,
+    slot?: EquipSlot
   ) {
-    super(slot?);
-    this.name = name;
-    this.tags = tags;
-    this.cost = cost;
-    this.weight = weight;
-    this.description = desc;
+    super(name, tags, cost, weight, desc, slot);
     this.damage = damage;
   }
 }
@@ -61,13 +68,10 @@ class Armor extends Equipment {
     weight: number,
     ac: number,
     armorType: ArmorType,
-    dexLimit?: number
+    dexLimit?: number,
+    desc?: string
   ) {
-    super();
-    this.name = name;
-    this.tags = tags;
-    this.cost = cost;
-    this.weight = weight;
+    super(name, tags, cost, weight, desc);
     this.ac = ac;
     this.dexLimit = dexLimit;
     this.armorType = armorType;
