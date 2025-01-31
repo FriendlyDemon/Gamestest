@@ -136,6 +136,23 @@ class Usable extends Item {
 
 class Ammunition extends Item {
   type = "ammunition";
+  ammount: number;
+  constructor(
+    name: string,
+    tags: Array<WeaponTags>,
+    cost: number,
+    weight: number,
+    ammount: number,
+    desc?: string
+  ) {
+    super();
+    this.name = name;
+    this.tags = tags;
+    this.cost = cost;
+    this.weight = weight;
+    this.ammount = ammount;
+    this.description = desc;
+  }
 }
 
 export { Weapon, Armor, Accessory, Material, Usable, Ammunition };
