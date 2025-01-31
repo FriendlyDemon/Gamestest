@@ -37,7 +37,8 @@ type WeaponTags =
   | "two-handed"
   | "melee"
   | "ranged"
-  | "thrown";
+  | "thrown"
+  | "arcane focus";
 
 type ArmorType = "light" | "medium" | "heavy" | "shield";
 

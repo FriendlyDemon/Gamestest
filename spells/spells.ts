@@ -7,7 +7,7 @@ export class Spell {
   range: Range;
   area?: number;
   duration: number;
-  dice: Array<[number, number, DamageTypes, DamageTypes?]> | undefined;
+  dice?: Array<[number, number, DamageTypes, DamageTypes?]>;
   tags: Array<SpellTags>;
   constructor(
     name: string,
