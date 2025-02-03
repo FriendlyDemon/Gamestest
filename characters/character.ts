@@ -1,6 +1,7 @@
+import { CreatureType } from "../types";
 class Character {
   name: string;
-  creatureType: string;
+  creatureType: CreatureType;
   race: string;
   classe?: string;
   charStatus: [
@@ -19,7 +20,7 @@ class Character {
   spells?: SpellList;
   constructor(
     name: string,
-    creatureType: string,
+    creatureType: CreatureType,
     race: string,
     str: number,
     dex: number,

@@ -7,6 +7,7 @@ export {
   Actions,
   MagicSchool,
   Range,
+  CreatureType,
 };
 
 type DamageTypes =
@@ -79,3 +80,19 @@ type MagicSchool =
   | "transmutation";
 
 type Range = number | "self" | "touch";
+
+type CreatureType =
+  | "aberration"
+  | "beast"
+  | "celestial"
+  | "construct"
+  | "dragon"
+  | "elemental"
+  | "fey"
+  | "fiend"
+  | "giant"
+  | "humanoid"
+  | "mostrosity"
+  | "ooze"
+  | "plant"
+  | "undead";

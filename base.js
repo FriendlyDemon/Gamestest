@@ -19,20 +19,28 @@ function _Ref(folder, document, name, quantity) {
   } else {
     doc = require(`./${folder}/${document}.js`);
 
-    if (typeof name == 'string') { doc.name = name; }
+    if (typeof name == "string") {
+      doc.name = name;
+    }
 
+    for (let i = 1; i <= quantity || i == 1; i++) {
+      let filename = (
+        "000000" + fs.readdirSync("./_Ref/" + folder).length.toString(16)
+      ).slice(-6);
 
-    for (i = 1; i <= quantity || i == 1; i++) {
-      let filename = ('000000' + fs.readdirSync("./_Ref/" + folder).length.toString(16)).slice(-6)
-
-      fs.writeFileSync("./_Ref/" + folder + "/" + filename + ".json",
+      fs.writeFileSync(
+        "./_Ref/" + folder + "/" + filename + ".json",
         JSON.stringify(doc, null, "    ")
       );
     }
     if (quantity > 1) {
-      return `references successfully created as ${('000000' + refname.toString(16)).slice(-6)} to ${('000000' + (refname + quantity).toString(16)).slice(-6)}`;
+      return `references successfully created as ${(
+        "000000" + refname.toString(16)
+      ).slice(-6)} to ${("000000" + (refname + quantity).toString(16)).slice(
+        -6
+      )}`;
     } else {
-      return `reference successfully created as ${refname.toString(16)}`
+      return `reference successfully created as ${refname.toString(16)}`;
     }
   }
 }
@@ -44,7 +52,6 @@ function impRef(folder, file) {
     } else {
       return `${file}.json does not exist`;
     }
-
   } else {
     return `${folder} does not exist`;
   }
@@ -57,32 +64,31 @@ function impBase(folder, file) {
     } else {
       return `${file}.js does not exists`;
     }
-
   } else {
     return `${folder} does not exist`;
   }
 }
 
 function showSlots(caster) {
-  let foo = []
+  let foo = [];
   for (let slot in caster.spells) {
     if (caster.spells[slot].length > 0) {
-      foo.push(slot)
+      foo.push(slot);
     }
   }
-  return foo
+  return foo;
 }
 
 function pickSlot(character) {
-  let cha = impRef("characters", character)
-  if (typeof cha == 'object') {
+  let cha = impRef("characters", character);
+  if (typeof cha == "object") {
     let slot = showSlots(cha);
 
     let pick = slot[rl.keyInSelect(slot, "Wich slot would you like to use?")];
 
     return cha.spells[pick].map(sN);
   } else {
-    return cha
+    return cha;
   }
 }
 
@@ -95,46 +101,46 @@ function sN(hex) {
 }
 
 function castList(caster) {
-  let castSpell = pickSlot(caster)
-  let spellName=castSpell[rl.keyInSelect(castSpell, "Wich spell would you like to cast?")
-  ];
-  console.log(impRef('characters',caster).name + " casts " + spellName + "!");
+  let castSpell = pickSlot(caster);
+  let spellName =
+    castSpell[rl.keyInSelect(castSpell, "Wich spell would you like to cast?")];
+  console.log(impRef("characters", caster).name + " casts " + spellName + "!");
 }
 // rewrite return to ( x(y) type damage)
 function damage(weapon) {
-  let ref = impRef('items', weapon)
-  if (typeof ref == 'string') {
-    return ref
+  let ref = impRef("items", weapon);
+  if (typeof ref == "string") {
+    return ref;
   } else {
-    let v = 1
-    if (ref.tags.includes('versatile')) {
-      v = 2
-    };
-
-    let x = 0
-
-    for (let i = 0; i < ref.damage[0][0]; i++) {
-      x += d(ref.damage[0][v])
+    let v = 1;
+    if (ref.tags.includes("versatile")) {
+      v = 2;
     }
 
-    final = `${x} ${ref.damage[0].at(-1)} damage`
+    let x = 0;
 
-    x = 0
+    for (let i = 0; i < ref.damage[0][0]; i++) {
+      x += d(ref.damage[0][v]);
+    }
+
+    final = `${x} ${ref.damage[0].at(-1)} damage`;
+
+    x = 0;
 
     if (ref.damage.length > 1) {
-      for (let i = 1, y = 1; y < ref.damage.length;) {
-        x += d(ref.damage[y][1])
+      for (let i = 1, y = 1; y < ref.damage.length; ) {
+        x += d(ref.damage[y][1]);
         if (ref.damage[y][0] > i) {
-          i++
+          i++;
         } else {
-          final += `, ${x} ${ref.damage[y].at(-1)} damage`
+          final += `, ${x} ${ref.damage[y].at(-1)} damage`;
 
-          y++, i = 1, x = 0
+          y++, (i = 1), (x = 0);
         }
       }
     }
-    return final
+    return final;
   }
 }
 
-castList('000000')
+castList("000000");
