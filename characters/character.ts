@@ -63,6 +63,57 @@ class Equip {
   mainhand: string = "empty";
   offhand: string = "empty";
   misc: Array<string> = ["empty"];
+  constructor(
+    head?: string,
+    back?: string,
+    torso?: string,
+    waist?: string,
+    legs?: string,
+    feet?: string,
+    hands?: string,
+    fingers?: Array<string>,
+    neck?: string,
+    mainhand?: string,
+    offhand?: string,
+    misc?: Array<string>
+  ) {
+    if (head != undefined) {
+      this.head = head;
+    }
+    if (back != undefined) {
+      this.back = back;
+    }
+    if (torso != undefined) {
+      this.torso = torso;
+    }
+    if (waist != undefined) {
+      this.waist = waist;
+    }
+    if (legs != undefined) {
+      this.legs = legs;
+    }
+    if (feet != undefined) {
+      this.feet = feet;
+    }
+    if (hands != undefined) {
+      this.hands = hands;
+    }
+    if (fingers != undefined) {
+      this.fingers = fingers;
+    }
+    if (neck != undefined) {
+      this.neck = neck;
+    }
+    if (mainhand != undefined) {
+      this.mainhand = mainhand;
+    }
+    if (offhand != undefined) {
+      this.offhand = offhand;
+    }
+    if (misc != undefined) {
+      this.misc = misc;
+    }
+  }
 }
 
 class Inventory {
@@ -70,6 +121,25 @@ class Inventory {
   materials: Array<string | void> = [];
   consumables: Array<string | void> = [];
   misc: Array<string | void> = [];
+  constructor(
+    equipment?: Array<string | void>,
+    materials?: Array<string | void>,
+    consumables?: Array<string | void>,
+    misc?: Array<string | void>
+  ) {
+    if (equipment != undefined) {
+      this.equipment = equipment;
+    }
+    if (materials != undefined) {
+      this.materials = materials;
+    }
+    if (consumables != undefined) {
+      this.consumables = consumables;
+    }
+    if (misc != undefined) {
+      this.misc = misc;
+    }
+  }
 }
 
 class SpellList {
