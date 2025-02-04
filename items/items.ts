@@ -25,6 +25,7 @@ class Weapon extends Equipment {
   damage: Array<
     [number, number, number, DamageTypes] | [number, number, DamageTypes]
   >;
+  range: [number, number];
   constructor(
     name: string,
     tags: Array<WeaponTags>,
@@ -33,6 +34,7 @@ class Weapon extends Equipment {
     damage: Array<
       [number, number, number, DamageTypes] | [number, number, DamageTypes]
     >,
+    range?: [number, number],
     desc?: string
   ) {
     super();
@@ -42,6 +44,9 @@ class Weapon extends Equipment {
     this.weight = weight;
     this.description = desc;
     this.damage = damage;
+    if (range && (tags.includes("ranged") || tags.includes("thrown"))) {
+      this.range = range;
+    }
   }
 }
 
