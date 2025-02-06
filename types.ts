@@ -34,12 +34,14 @@ type WeaponTags =
   | "martial"
   | "simple"
   | "versatile"
-  | "one-handed"
   | "two-handed"
   | "melee"
   | "ranged"
   | "thrown"
-  | "arcane focus";
+  | "arcane focus"
+  | "heavy"
+  | "light"
+  | "special";
 
 type ArmorType = "light" | "medium" | "heavy" | "shield";
 
