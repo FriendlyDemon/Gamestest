@@ -41,14 +41,14 @@ class Damage {
 
 class Weapon extends Equipment {
   damage: Array<Damage>;
-  range:[number,number]
+  range: [number, number];
   constructor(
     name: string,
     tags: Array<WeaponTags>,
     cost: number,
     weight: number,
     damage: Array<Damage>,
-    range?:[number,number],
+    range?: [number, number],
     desc?: string
   ) {
     super();
