@@ -48,8 +48,8 @@ class Weapon extends Equipment {
     cost: number,
     weight: number,
     damage: Array<Damage>,
-    desc?: string,
-    range?:[number,number]
+    range?:[number,number],
+    desc?: string
   ) {
     super();
     this.name = name;
