@@ -49,11 +49,13 @@ type EquipSlot =
   | "torso"
   | "back"
   | "arm"
-  | "hand"
+  | "hands"
   | "finger"
   | "waist"
-  | "leg"
-  | "feet";
+  | "legs"
+  | "feet"
+  | "misc"
+  | "off-hand";
 
 type SpellTags =
   | DamageTypes

@@ -1,4 +1,6 @@
 import { Character, Equip, Inventory, SpellList } from "./character";
+import robe from "../items/robe"
+import staff from "../items/staff"
 export default new Character(
   "Gandalf",
   "humanoid",
@@ -15,15 +17,14 @@ export default new Character(
   new Equip(
     undefined,
     undefined,
-    "robe",
+    robe,
     undefined,
     undefined,
     undefined,
     undefined,
     undefined,
     undefined,
-    "staff",
-    "mainhand"
+    staff
   ),
   new Inventory(["slingshot"], ["gum arabic", "rope"]),
   new SpellList(["firebolt", "tollTheDead"], ["magicMissile"])

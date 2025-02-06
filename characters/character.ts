@@ -1,4 +1,11 @@
 import { CreatureType } from "../types";
+import * as items from "../items/items";
+import fist from "../items/fist";
+
+function d(num: number) {
+  return Math.floor(Math.random() * num) + 1;
+}
+
 class Character {
   name: string;
   creatureType: CreatureType;
@@ -18,6 +25,51 @@ class Character {
   equipment: Equip;
   inventory: Inventory;
   spells?: SpellList;
+
+  attack(weapon: "main" | "off" | "2h") {
+    let ref: items.Weapon;
+    if (weapon == "main") {
+      ref = this.equipment.mainhand;
+    }
+    if (weapon == "off" && this.equipment.offhand instanceof items.Weapon) {
+      ref = this.equipment.offhand;
+    }
+    if (
+      weapon == "2h" &&
+      (this.equipment.mainhand.tags.includes("two-handed") ||
+        (this.equipment.mainhand.tags.includes("versatile") &&
+          this.equipment.offhand == "empty"))
+    ) {
+      ref = this.equipment.mainhand;
+    } else {
+      return "error";
+    }
+
+    let x = 0;
+
+    if (weapon != "2h") {x += d(ref.damage[0].DiceValue);
+    } else if(weapon=='2h'&&typeof ref.damage[0].DiceValueVersatile=='number'){x += d(ref.damage[0].DiceValueVersatile)
+    }
+
+    let final = `${x} ${ref.damage[0].DamageType} damage`;
+
+    x = 0;
+
+    if (ref.damage.length > 1) {
+      for (let i = 1, y = 1; y < ref.damage.length; ) {
+        x += d(ref.damage[y][1]);
+        if (ref.damage[y][0] > i) {
+          i++;
+        } else {
+          final += `, ${x} ${ref.damage[y].DiceValue} damage`;
+
+          y++, (i = 1), (x = 0);
+        }
+      }
+    }
+    return final;
+  }
+
   constructor(
     name: string,
     creatureType: CreatureType,
@@ -51,63 +103,76 @@ class Character {
 }
 
 class Equip {
-  head: string = "empty";
-  back: string = "empty";
-  torso: string = "empty";
-  waist: string = "empty";
-  legs: string = "empty";
-  feet: string = "empty";
-  hands: string = "empty";
-  fingers: Array<string> = ["empty"];
-  neck: string = "empty";
-  mainhand: string = "empty";
-  offhand: string = "empty";
-  misc: Array<string> = ["empty"];
+  head: items.Accessory | "empty" = "empty";
+  back: items.Accessory | "empty" = "empty";
+  torso: items.Armor | items.Accessory | "empty" = "empty";
+  waist: items.Accessory | "empty" = "empty";
+  legs: items.Accessory | "empty" = "empty";
+  feet: items.Accessory | "empty" = "empty";
+  hands: items.Accessory | "empty" = "empty";
+  fingers: Array<items.Accessory> | "empty" = "empty";
+  neck: items.Accessory | "empty" = "empty";
+  mainhand: items.Weapon = fist;
+  offhand: items.Equipment | "empty" = "empty";
+  misc: Array<items.Accessory> | "empty" = "empty";
   constructor(
-    head?: string,
-    back?: string,
-    torso?: string,
-    waist?: string,
-    legs?: string,
-    feet?: string,
-    hands?: string,
-    fingers?: Array<string>,
-    neck?: string,
-    mainhand?: string,
-    offhand?: string,
-    misc?: Array<string>
+    head?: items.Accessory,
+    back?: items.Accessory,
+    torso?: items.Armor | items.Accessory,
+    waist?: items.Accessory,
+    legs?: items.Accessory,
+    feet?: items.Accessory,
+    hands?: items.Accessory,
+    fingers?: Array<items.Accessory>,
+    neck?: items.Accessory,
+    mainhand?: items.Weapon,
+    offhand?: items.Equipment,
+    misc?: Array<items.Accessory>
   ) {
-    if (head != undefined) {
+    if (head?.slot == "head") {
       this.head = head;
     }
-    if (back != undefined) {
+    if (back?.slot == "back") {
       this.back = back;
     }
-    if (torso != undefined) {
+    if (
+      torso != undefined &&
+      (torso instanceof items.Armor || torso.slot == "torso")
+    ) {
       this.torso = torso;
     }
-    if (waist != undefined) {
+    if (waist?.slot == "waist") {
       this.waist = waist;
     }
-    if (legs != undefined) {
+    if (legs?.slot == "legs") {
       this.legs = legs;
     }
-    if (feet != undefined) {
+    if (feet?.slot == "feet") {
       this.feet = feet;
     }
-    if (hands != undefined) {
+    if (hands?.slot == "hands") {
       this.hands = hands;
     }
     if (fingers != undefined) {
-      this.fingers = fingers;
+      for (let i = 0; i <= fingers.length; i++)
+        if (fingers[i].slot == "finger") {
+          if ((this.fingers = "empty")) {
+            this.fingers = [];
+          }
+          this.fingers.push(fingers[i]);
+        }
     }
-    if (neck != undefined) {
+    if (neck?.slot == "neck") {
       this.neck = neck;
     }
     if (mainhand != undefined) {
       this.mainhand = mainhand;
     }
-    if (offhand != undefined) {
+    if (
+      (offhand instanceof items.Accessory && offhand?.slot == "off-hand") ||
+      (offhand instanceof items.Armor && offhand.armorType == "shield") ||
+      (offhand instanceof items.Weapon && offhand.tags.includes("light"))
+    ) {
       this.offhand = offhand;
     }
     if (misc != undefined) {

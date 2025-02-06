@@ -21,18 +21,32 @@ abstract class Equipment extends Item {
   type = "equipment";
 }
 
+class Damage {
+  DiceNumber: number;
+  DiceValue: number;
+  DiceValueVersatile?: number;
+  DamageType: DamageTypes;
+  constructor(
+    DiceNumber: number,
+    DiceValue: number,
+    DamageType: DamageTypes,
+    DiceValueVersatile?: number
+  ) {
+    this.DiceNumber = DiceNumber;
+    this.DiceValue = DiceValue;
+    this.DiceValueVersatile = DiceValueVersatile;
+    this.DamageType = DamageType;
+  }
+}
+
 class Weapon extends Equipment {
-  damage: Array<
-    [number, number, number, DamageTypes] | [number, number, DamageTypes]
-  >;
+  damage: Array<Damage>;
   constructor(
     name: string,
     tags: Array<WeaponTags>,
     cost: number,
     weight: number,
-    damage: Array<
-      [number, number, number, DamageTypes] | [number, number, DamageTypes]
-    >,
+    damage: Array<Damage>,
     desc?: string
   ) {
     super();
@@ -76,7 +90,6 @@ class Accessory extends Equipment {
   slot: EquipSlot;
   constructor(
     name: string,
-    type: string,
     tags: Array<string>,
     cost: number,
     weight: number,
@@ -85,7 +98,6 @@ class Accessory extends Equipment {
   ) {
     super();
     this.name = name;
-    this.type = type;
     this.tags = tags;
     this.cost = cost;
     this.weight = weight;
@@ -190,4 +202,16 @@ class Ammunition extends Item {
   }
 }
 
-export { Weapon, Armor, Accessory, Material, Usable, Wand, Scroll, Ammunition };
+export {
+  Item,
+  Equipment,
+  Weapon,
+  Damage,
+  Armor,
+  Accessory,
+  Material,
+  Usable,
+  Wand,
+  Scroll,
+  Ammunition,
+};
