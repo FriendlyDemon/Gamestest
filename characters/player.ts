@@ -15,15 +15,7 @@ export default new Character(
   12,
   20,
   new Equip(
-    undefined,
-    undefined,
     robe,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
     staff
   ),
   new Inventory(["slingshot"], ["gum arabic", "rope"]),
