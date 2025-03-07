@@ -38,7 +38,7 @@ class Character {
       weapon == "2h" &&
       (this.equipment.mainhand.tags.includes("two-handed") ||
         (this.equipment.mainhand.tags.includes("versatile") &&
-          this.equipment.offhand == "empty"))
+          this.equipment.offhand == null))
     ) {
       ref = this.equipment.mainhand;
     } else {
@@ -103,30 +103,36 @@ class Character {
 }
 
 class Equip {
-  head: items.Accessory | "empty" = "empty";
-  back: items.Accessory | "empty" = "empty";
-  torso: items.Armor | items.Accessory | "empty" = "empty";
-  waist: items.Accessory | "empty" = "empty";
-  legs: items.Accessory | "empty" = "empty";
-  feet: items.Accessory | "empty" = "empty";
-  hands: items.Accessory | "empty" = "empty";
-  fingers: Array<items.Accessory> | "empty" = "empty";
-  neck: items.Accessory | "empty" = "empty";
+  head: items.Accessory | null = null;
+  back: items.Accessory | null = null;
+  torso: items.Armor | items.Accessory | null = null;
+  waist: items.Accessory | null = null;
+  legs: items.Accessory | null = null;
+  feet: items.Accessory | null = null;
+  hands: items.Accessory | null = null;
+  ring1: items.Accessory| null = null;
+  ring2: items.Accessory |null = null;
+  ring3: items.Accessory| null = null;
+  ring4: items.Accessory |null = null;
+  neck: items.Accessory | null = null;
   mainhand: items.Weapon = fist;
-  offhand: items.Equipment | "empty" = "empty";
-  misc: Array<items.Accessory> | "empty" = "empty";
+  offhand: items.Equipment | null = null;
+  misc: Array<items.Accessory> | null = null;
   constructor(
+    torso?: items.Armor | items.Accessory,
+    mainhand?: items.Weapon,
+    offhand?: items.Equipment,
+    neck?: items.Accessory,
+    ring1?: items.Accessory,
+    ring2?: items.Accessory,    
+    ring3?: items.Accessory,
+    ring4?: items.Accessory,
     head?: items.Accessory,
     back?: items.Accessory,
-    torso?: items.Armor | items.Accessory,
     waist?: items.Accessory,
     legs?: items.Accessory,
     feet?: items.Accessory,
     hands?: items.Accessory,
-    fingers?: Array<items.Accessory>,
-    neck?: items.Accessory,
-    mainhand?: items.Weapon,
-    offhand?: items.Equipment,
     misc?: Array<items.Accessory>
   ) {
     if (head?.slot == "head") {
@@ -153,14 +159,17 @@ class Equip {
     if (hands?.slot == "hands") {
       this.hands = hands;
     }
-    if (fingers != undefined) {
-      for (let i = 0; i <= fingers.length; i++)
-        if (fingers[i].slot == "finger") {
-          if ((this.fingers = "empty")) {
-            this.fingers = [];
-          }
-          this.fingers.push(fingers[i]);
-        }
+    if (ring1?.slot == "finger") {
+      this.ring1=ring1
+    }
+    if (ring2?.slot == "finger") {
+      this.ring2=ring2
+    }
+    if (ring3?.slot == "finger") {
+      this.ring3=ring3
+    }
+    if (ring4?.slot == "finger") {
+      this.ring4=ring4
     }
     if (neck?.slot == "neck") {
       this.neck = neck;
