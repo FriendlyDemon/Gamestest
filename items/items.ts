@@ -18,7 +18,6 @@ abstract class Item {
 }
 
 abstract class Equipment extends Item {
-  type = "equipment";
 }
 
 class Damage {
