@@ -145,7 +145,8 @@ public class Items {
             tags.removeAll(Arrays.asList(Tags));
         }
 
-        public Weapon(String Name, Types.WeaponTags[] Tags, int Cost, int Weight, String Description, Damage Damage, Integer MinRange, Integer MaxRange) {
+        public Weapon(String Name, Types.WeaponTags[] Tags, int Cost, int Weight, String Description, Damage Damage,
+                Integer MinRange, Integer MaxRange) {
             super(Name, Cost, Weight, Description);
             this.tags = new ArrayList<>();
             tags.addAll(Arrays.asList(Tags));
@@ -187,7 +188,8 @@ public class Items {
             return this.isMetal;
         }
 
-        public Armor(String Name, int Cost, int Weight, String Description, int Ac, int DexLimit, Types.ArmorType ArmorType, boolean IsMetal) {
+        public Armor(String Name, int Cost, int Weight, String Description, int Ac, int DexLimit,
+                Types.ArmorType ArmorType, boolean IsMetal) {
             super(Name, Cost, Weight, Description);
             ac = Ac;
             dexLimit = DexLimit;
@@ -254,10 +256,11 @@ public class Items {
             this.charges[0] += change;
         }
 
-        public Wand(String Name, int Cost, int Weight, String Description, boolean Consumed, Types.Actions UseTime, Spells.Spell Spell, int CurrentCharges, int MaxCharges) {
+        public Wand(String Name, int Cost, int Weight, String Description, boolean Consumed, Types.Actions UseTime,
+                Spells.Spell Spell, int CurrentCharges, int MaxCharges) {
             super(Name, Cost, Weight, Description, Consumed, UseTime);
             spell = Spell;
-            charges = new int[]{CurrentCharges, MaxCharges};
+            charges = new int[] { CurrentCharges, MaxCharges };
 
         }
     }
@@ -270,7 +273,8 @@ public class Items {
             return this.spell;
         }
 
-        public Scroll(String Name, int Cost, int Weight, String Description, Types.Actions UseTime, Spells.Spell Spell) {
+        public Scroll(String Name, int Cost, int Weight, String Description, Types.Actions UseTime,
+                Spells.Spell Spell) {
             super(Name, Cost, Weight, Description, true, Types.Actions.action);
             spell = Spell;
         }
