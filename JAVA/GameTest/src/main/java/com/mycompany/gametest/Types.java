@@ -114,9 +114,10 @@ public class Types {
         transmutation;
     }
 
-    static enum Range {
+    static enum Target {
         self,
-        touch;
+        touch,
+        ranged;
     }
 
     static enum CreatureType {
