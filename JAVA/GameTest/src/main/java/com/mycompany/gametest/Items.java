@@ -5,41 +5,6 @@ import java.util.Arrays;
 
 public class Items {
 
-    static class Damage {
-
-        private int diceNumber;
-
-        private int diceValue;
-
-        private int diceValueVersatile;
-
-        private Types.DamageTypes damageType;
-
-        public int getDiceNumber() {
-            return this.diceNumber;
-        }
-
-        public int getDiceValue() {
-            return this.diceValue;
-        }
-
-        public int getDiceVersatile() {
-            return this.diceValueVersatile;
-        }
-
-        public Types.DamageTypes getDamageType() {
-            return this.damageType;
-        }
-
-        public Damage(
-                int DiceNumber, int DiceValue, Types.DamageTypes DamageType, int DiceValueVersatile) {
-            diceNumber = DiceNumber;
-            diceValue = DiceValue;
-            diceValueVersatile = DiceValueVersatile;
-            damageType = DamageType;
-        }
-    }
-
     static abstract class Item {
 
         private String name;
@@ -107,17 +72,17 @@ public class Items {
 
     static class Weapon extends Equipment {
 
-        private Damage damage;
+        private Misc.Damage damage;
 
         private ArrayList<Integer> range;
 
         private ArrayList<Types.WeaponTags> tags;
 
-        public Damage getDamage() {
+        public Misc.Damage getDamage() {
             return this.damage;
         }
 
-        public void setDamage(Damage Damage) {
+        public void setDamage(Misc.Damage Damage) {
             this.damage = Damage;
         }
 
@@ -145,7 +110,7 @@ public class Items {
             tags.removeAll(Arrays.asList(Tags));
         }
 
-        public Weapon(String Name, Types.WeaponTags[] Tags, int Cost, int Weight, String Description, Damage Damage,
+        public Weapon(String Name, Types.WeaponTags[] Tags, int Cost, int Weight, String Description, Misc.Damage Damage,
                 Integer MinRange, Integer MaxRange) {
             super(Name, Cost, Weight, Description);
             this.tags = new ArrayList<>();
@@ -241,10 +206,10 @@ public class Items {
 
     static class Wand extends Usable {
 
-        private Spells.Spell spell;
+        private Spell spell;
         private int[] charges;
 
-        public Spells.Spell getSpell() {
+        public Spell getSpell() {
             return this.spell;
         }
 
@@ -257,24 +222,24 @@ public class Items {
         }
 
         public Wand(String Name, int Cost, int Weight, String Description, boolean Consumed, Types.Actions UseTime,
-                Spells.Spell Spell, int CurrentCharges, int MaxCharges) {
+                Spell Spell, int CurrentCharges, int MaxCharges) {
             super(Name, Cost, Weight, Description, Consumed, UseTime);
             spell = Spell;
-            charges = new int[] { CurrentCharges, MaxCharges };
+            charges = new int[]{CurrentCharges, MaxCharges};
 
         }
     }
 
     static class Scroll extends Usable {
 
-        private Spells.Spell spell;
+        private Spell spell;
 
-        public Spells.Spell getSpell() {
+        public Spell getSpell() {
             return this.spell;
         }
 
         public Scroll(String Name, int Cost, int Weight, String Description, Types.Actions UseTime,
-                Spells.Spell Spell) {
+                Spell Spell) {
             super(Name, Cost, Weight, Description, true, Types.Actions.action);
             spell = Spell;
         }

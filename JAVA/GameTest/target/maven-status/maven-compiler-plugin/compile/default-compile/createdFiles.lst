@@ -1,0 +1,9 @@
+com\mycompany\gametest\Misc.class
+com\mycompany\gametest\Spell.class
+com\mycompany\gametest\Misc$SpellList.class
+com\mycompany\gametest\Misc$Equip.class
+com\mycompany\gametest\Misc$Inventory.class
+com\mycompany\gametest\Character.class
+com\mycompany\gametest\Misc$CharacterStatus.class
+com\mycompany\gametest\Misc$Damage.class
+com\mycompany\gametest\Types$Target.class
